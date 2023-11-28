@@ -1,5 +1,7 @@
 <script>
 import axios from "axios";
+import router from "router";
+import { routerKey } from "vue-router";
 
 
 export default {
@@ -36,13 +38,13 @@ export default {
   },
   methods:{
     createNewPost(){
-      axios.post("http://localhost:3000/posts", this.newPost, {
-        headers: { "Content-Type": "multipart/form-data" }
-      }).then((res)=> {
-      })
-    
+      axios.post("http://localhost:3000/posts", this.newPost)
+      .then(() => {
+          // Reindirizza a 'home' dopo la creazione del post
+          this.$router.push({ name: 'home' });
+        })
     },
-  }
+   }
 };
 </script> 
 

@@ -1,10 +1,12 @@
 <script>
 import appHeader from './components/appHeader.vue';
+import appFooter from './components/appFooter.vue';
 import axios from "axios";
 
 export default{
   components:{
-    appHeader
+    appHeader,
+    appFooter,
   }, 
   data() {
     return {
@@ -23,13 +25,23 @@ export default{
 
 <template>
   <appHeader/>
+  <main >
+    <div class="btn-primary">
+      cioa
+    </div>
+      <router-view></router-view>
+  </main>
 
-  <router-view></router-view>
   
+  <appFooter/>
 </template>
 
 <style lang="scss">
 @use "./style/general.scss" as *;
 
-
+main{
+  height: calc(100vh - 250px);
+  background-color: antiquewhite;
+  overflow: auto;
+}
 </style>

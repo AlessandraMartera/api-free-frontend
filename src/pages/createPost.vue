@@ -1,8 +1,5 @@
 <script>
 import axios from "axios";
-import router from "router";
-import { routerKey } from "vue-router";
-
 
 export default {
   components: {
@@ -52,41 +49,75 @@ export default {
     <h1>pages create post</h1>
     <router-link :to="{ name: 'home' }">back to home</router-link>
 
+    
+<div class="fake_form">
+  
     <form method="POST">    
 
-      <label for="category">Choose a category:</label>
-      <select name="category" id="category"  v-model="newPost.category">
-        <option v-for="category in categories" :value="category.id" :key="category.id">{{ category.name }}</option>
-      </select>
+      <!-- category -->
+      <div class="form-floating">
+          <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+            <option selected>Choose a category</option>
+            <option  v-for="category in categories" :value="category.id" :key="category.id">{{ category.name }}</option>
+            
+          </select>
+          <label for="floatingSelect">Works with selects</label>
+        </div>
 
-      <br>
-      <label for="title">title</label>
-      <input type="text" id="title" name="title" v-model="this.newPost.title">
-      <br>
+        <!-- title -->
+        <div class="mb-3">
+          <label for="title" class="form-label">title</label>
+          <input type="text" class="form-control" id="title" placeholder="Add a title">
+        </div>
 
-      <label for="image">image</label>
-      <input type="text" id="image" name="image"  v-model="this.newPost.image">
-      <br>
+        <!-- image -->
+        <div class="mb-3">
+          <label for="image" class="form-label">image</label>
+          <input type="text" class="form-control" id="image" placeholder="add a path image">
+        </div>
 
-      <label for="content">content</label>
-      <input type="text" id="content" name="content"  v-model="this.newPost.content">
-      <br>
-
-      <div>
-        <span>fai sapere di cosa parla il tuo post, dagli dei tags</span>
-         <div v-for="tag in tags">
+        <!-- content -->
+        <div class="form-floating">  
           
-        <label :for="tag.id" :key="tag.id">{{ tag.name }}</label>
-        <input type="checkbox" :value="tag.id" v-model="this.newPost.tags">
-      </div>
-      
-      </div>
-     
-      <br>
-      <input type="button" value="pubblica" @click="createNewPost()">
+          <textarea class="form-control" placeholder="Leave a comment here" id="content" style="height: 100px"></textarea>
+          <label for="content">add a content...</label>
+        </div>  
+
+        <!-- tags -->
+        <div class="input_tags">
+          <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group" v-for="tag in tags">
+            <input  type="checkbox" class="btn-check"  autocomplete="off" :id="tag.id" :value="tag.id" v-model="this.newPost.tags">
+            <label class="btn btn-outline-primary" :for="tag.id" :key="tag.id">{{ tag.name }}</label>
+          </div>
+        </div>
+
+        <!-- button -->
+        <input type="button" class="btn btn-primary" @click="createNewPost()" value="pubblica">
+        <!-- <input class="btn-primary" type="button" value="pubblica" @click="createNewPost()"> -->
     </form>
+    
+</div>
 </template>
 
 <style lang="scss" scoped>
+.fake_form{
+  border: 2px solid #ccc;
+  border-radius: 15px;
+  width: 60%;
+  margin: 20px auto;
+  padding: 50px;
 
+  .input_tags{
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    
+  }
+
+  .button_form{
+    width: 100px;
+    margin: 20px auto;
+    align-self: center;
+  }
+}
 </style>

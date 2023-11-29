@@ -56,7 +56,8 @@ export default {
 
       <!-- category -->
       <div class="form-floating">
-          <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+        <select v-model="newPost.category" class="form-select" id="floatingSelect" aria-label="Floating label select example">
+          <!-- <select class="form-select" id="floatingSelect" aria-label="Floating label select example"> -->
             <option selected>Choose a category</option>
             <option  v-for="category in categories" :value="category.id" :key="category.id">{{ category.name }}</option>
             
@@ -67,32 +68,38 @@ export default {
         <!-- title -->
         <div class="mb-3">
           <label for="title" class="form-label">title</label>
-          <input type="text" class="form-control" id="title" placeholder="Add a title">
+          <input v-model="newPost.title" type="text" class="form-control" id="title" placeholder="Add a title">
+          <!-- <input type="text" class="form-control" id="title" placeholder="Add a title"> -->
         </div>
 
         <!-- image -->
         <div class="mb-3">
           <label for="image" class="form-label">image</label>
-          <input type="text" class="form-control" id="image" placeholder="add a path image">
+          <input v-model="newPost.image" type="text" class="form-control" id="image" placeholder="add a path image">
+
+          <!-- <input type="text" class="form-control" id="image" placeholder="add a path image"> -->
         </div>
 
         <!-- content -->
         <div class="form-floating">  
           
-          <textarea class="form-control" placeholder="Leave a comment here" id="content" style="height: 100px"></textarea>
+          <!-- <textarea class="form-control" placeholder="Leave a comment here" id="content" style="height: 100px"></textarea> -->
+          <textarea v-model="newPost.content" class="form-control" placeholder="Leave a comment here" id="content" style="height: 100px"></textarea>
           <label for="content">add a content...</label>
         </div>  
 
         <!-- tags -->
         <div class="input_tags">
           <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group" v-for="tag in tags">
-            <input  type="checkbox" class="btn-check"  autocomplete="off" :id="tag.id" :value="tag.id" v-model="this.newPost.tags">
+            <!-- <input  type="checkbox" class="btn-check"  autocomplete="off" :id="tag.id" :value="tag.id" v-model="this.newPost.tags"> -->
+            <input type="checkbox" class="btn-check" autocomplete="off" :id="tag.id" :value="tag.id" v-model="newPost.tags">
             <label class="btn btn-outline-primary" :for="tag.id" :key="tag.id">{{ tag.name }}</label>
           </div>
         </div>
 
         <!-- button -->
-        <input type="button" class="btn btn-primary" @click="createNewPost()" value="pubblica">
+        <input type="submit" class="btn btn-primary" @click.prevent="createNewPost()" value="pubblica">
+
         <!-- <input class="btn-primary" type="button" value="pubblica" @click="createNewPost()"> -->
     </form>
     
